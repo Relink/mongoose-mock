@@ -25,11 +25,12 @@ var Schema = function () {
         self[key] = properties[key];
       });
     }
-    this.save = sinon.stub();
-    this.increment = sinon.stub();
-    this.remove = sinon.stub();
     mongoose.emit('document', this);
   }
+
+  Model.prototype.save = sinon.stub();
+  Model.prototype.increment = sinon.stub();
+  Model.prototype.remove = sinon.stub();
 
   Model.statics = {};
   Model.methods = {};
@@ -100,7 +101,7 @@ function createModelFromSchema(name, Type) {
       });
     }
     models_[name] = Type;
-  } 
+  }
   return models_[name];
 }
 
